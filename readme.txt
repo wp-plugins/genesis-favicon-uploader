@@ -30,3 +30,6 @@ Currently only supports .ico files but already working on an update that will ac
 == Changelog ==
 = 0.1 =
 * Initial Beta Release
+
+= 0.1.0.1 =
+* Fixed: File check message shows you uploaded a favicon on activation before uploading.
