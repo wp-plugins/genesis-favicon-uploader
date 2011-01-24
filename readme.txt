@@ -1,5 +1,5 @@
 === Genesis Favicon Uploader ===
-Contributors: Christopher Cochran
+Contributors: cochran
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=TLKVZFHV64ZS4&lc=US&item_name=Christopher%20Cochran&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Tags: Favicon, Favicon uploader, genesis
 Requires at least: 3.0
