@@ -3,7 +3,7 @@
 Plugin Name: Genesis Favicon uploader
 Plugin URI: http://genesistutorials.com/plug-ins/genesis-post-teasers/
 Description: Upload your own favicon!
-Version: .1.0.1b
+Version: .1.1b
 Author: Christopher Cochran
 Author URI: http://christophercochran.me
 */
@@ -72,14 +72,14 @@ $extensions = array("ico");
 $check = $favicon_check;
 
 	if ( !is_multisite() ) {
-	$favicon = $favicon_path .'favicon.ico';
+		$favicon = $favicon_path . 'favicon.ico';
+		$favicon_file = $favicon_DIR . 'favicon.ico';
 	} else {
-	$favicon = $favicon_path .'favicon-'.$blog_id.'.ico';
+		$favicon = $favicon_path . 'favicon-'.$blog_id.'.ico';
+		$favicon_file = $favicon_DIR . 'favicon-'.$blog_id.'.ico';
 	}
 
-$explosion = explode(".", $check);
-$name = $explosion[0];
-$extension = $explosion[1];
+$maybe_ico = pathinfo( $check, PATHINFO_EXTENSION );
 ?>
 
 <div class="wrap">
@@ -88,19 +88,24 @@ $extension = $explosion[1];
 	<h2><?php _e('Genesis - Favicon Uploader', 'favicon_up'); ?></h2>
 
 	<?php
-	if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $check)) {
+
+	if ( is_writable( $favicon_DIR ) == false ) {
+		echo  '<p style="color:red;"><strong>Sorry, "<u>' . $favicon_DIR . '</u>" is not writeable on the server.</strong></p>';
+	}
 	
-		if (!in_array($extension, $extensions) ) {
-			echo  '<p style="color:red;"><strong>Currently at this time only file type supported are .ico.</strong></p>';
+	if( move_uploaded_file( $_FILES['uploadedfile']['tmp_name'], $check ) ) {
+	
+		if ( $maybe_ico != 'ico' ) {
+			echo  '<p style="color:red;"><strong>Sorry, you tried to upload a ".' . $maybe_ico . '" file. <br />Currently at this time only file type supported is ".ico."</strong></p>';
 			unlink ($check); 
-		} elseif ( in_array($extension, $extensions) && is_multisite() ) {
+		} elseif ( $maybe_ico == 'ico' && is_multisite() ) {
 			rename($favicon_DIR .'favicon.ico', $favicon_DIR .'favicon-'.$blog_id.'.ico');
 			echo '<p style="color:green;"><img src="'.$favicon.'" /> <-- Awesome Check it out! It worked. I hope so anyways. You should see your uploaded favicon beside this text.</p>';
 		} else {
 			echo '<p style="color:green;"><img src="'.$favicon.'" /> <-- Awesome Check it out! It worked. I hope so anyways. You should see your uploaded favicon beside this text.</p>';
 		} 
 	
-	} elseif ( file_exists($favicon) ) {
+	} elseif ( file_exists($favicon_file) ) {
 		echo '<p><img src="'.$favicon.'" /> <-- Awesome Check it out! It worked. I hope so anyways. You should see your uploaded favicon beside this text. <br />If you are tired of the current favicon upload another!</p>';
 	} else {	   
 	   echo '<p>Upload your favicon below. If you only have a .png, .gif, or .jpg check out <a href="http://converticon.com/">http://converticon.com/</a> to convert it to an .ico file.</p>';	
@@ -110,7 +115,7 @@ $extension = $explosion[1];
 	<form enctype="multipart/form-data" method="post" action="<?php echo admin_url('admin.php?page=upload-favicon'); ?>">
 		<?php wp_nonce_field('favicon-upload'); ?>
 		<input type="hidden" name="favicon-upload" value="1" />
-		<label for="uploadedfile"><?php sprintf( __('Upload File: (Maximum Size: %s)', 'favicon_up'), ini_get('post_max_size') ); ?></label>
+		<label for="uploadedfile"><?php echo sprintf( __('Upload File: <span class="description">(Maximum Size: %s)</span>', 'favicon_up'), ini_get('post_max_size') ); ?></label>
 		<input type="file" id="uploadedfile" name="uploadedfile" size="30" />
 		<input type="submit" class="button" value="<?php _e('Upload Favicon', 'favicon_up'); ?>" />
 	</form>
