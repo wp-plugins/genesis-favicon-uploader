@@ -35,6 +35,6 @@ Currently only supports .ico files but already working on an update that will ac
 * Fixed: File check message shows you uploaded a favicon on activation before uploading.
 
 = 0.1.1 =
-* Fixed: An issue with the way the the file type was decided. In some cases depending on hosted server the string would be broken before reaching the file extension.
+* Fixed: An issue with the way the the file type was detected. In some cases depending on hosted server the string would be broken before reaching the file extension.
 * Added: Additonal error messages.
 
