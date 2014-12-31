@@ -3,7 +3,7 @@ Contributors: cochran
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=TLKVZFHV64ZS4&lc=US&item_name=Christopher%20Cochran&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Tags: Favicon, Favicon uploader, genesis
 Requires at least: 3.0
-Tested up to: 3.0.3
+Tested up to: 4.1
 Stable tag: trunk
 
 Adds a theme option page to genesis to allow the user to upload a favicon without ftping into the themes folders.  - The Genesis Theme Framework is Required.
@@ -20,7 +20,7 @@ It will not make you a cup of joe. Sorry =(.
 
 == Frequently Asked Questions ==
 = What file type does this support? =
-Currently only supports .ico files but already working on an update that will accept .png, .gif and .jpeg
+Currently only supports .ico files but already working on an update that will accept .png.
 
 == Screenshots ==
 
@@ -38,3 +38,6 @@ Currently only supports .ico files but already working on an update that will ac
 * Fixed: An issue with the way the the file type was detected. In some cases depending on hosted server the string would be broken before reaching the file extension.
 * Added: Additonal error messages.
 
+= 0.1.2 =
+* Fixed: Wrong plugin uri.
+* Fixed: Undefined errors.
