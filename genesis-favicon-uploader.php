@@ -3,7 +3,7 @@
 Plugin Name: Genesis Favicon uploader
 Plugin URI: http://genesistutorials.com/plug-ins/genesis-favicon-uploader/
 Description: Upload your own favicon!
-Version: 0.1.2
+Version: .1.1b
 Author: Christopher Cochran
 Author URI: http://christophercochran.me
 */
